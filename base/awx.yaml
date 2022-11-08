@@ -15,7 +15,7 @@ spec:
 
   ingress_type: ingress
   ingress_tls_secret: awx-secret-tls
-  hostname: awx-io.mvne.postemobile.local
+  hostname: ubuntu.awx.local
 
   postgres_configuration_secret: awx-postgres-configuration
 
