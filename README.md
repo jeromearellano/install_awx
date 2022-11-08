@@ -57,7 +57,7 @@ Install the specified version of AWX Operator. Note that this procedure is appli
 cd ~
 git clone https://github.com/ansible/awx-operator.git
 cd awx-operator
-git checkout 0.30.0
+git checkout 0.28.0
 ```
 
 Export the name of the namespace where you want to deploy AWX Operator as the environment variable `NAMESPACE` and run `make deploy`. The default namespace is `awx`.
