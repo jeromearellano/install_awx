@@ -25,8 +25,7 @@ cat /etc/selinux/config | grep SELINUX=
 Install k3s by running the commands below:
 
 ```bash
-curl -sfL https://get.k3s.io | sudo bash -
-sudo chmod 644 /etc/rancher/k3s/k3s.yaml
+curl -sfL https://get.k3s.io | bash -s - --write-kubeconfig-mode 644 --disable metrics-server
 ```
 
 Check k3s service to confirm it is running and working:
@@ -58,7 +57,7 @@ Install the specified version of AWX Operator. Note that this procedure is appli
 cd ~
 git clone https://github.com/ansible/awx-operator.git
 cd awx-operator
-git checkout 0.28.0
+git checkout 0.30.0
 ```
 
 Export the name of the namespace where you want to deploy AWX Operator as the environment variable `NAMESPACE` and run `make deploy`. The default namespace is `awx`.
@@ -91,8 +90,8 @@ Clone this repository and change directory.
 
 ```bash
 cd ~
-git clone git@gitlab-io.mvne.postemobile.local:ansible/ansible_project.git
-cd ansible_project
+git clone https://github.com/jeromearellano/install_awx.git
+cd install_awx
 ```
 
 Generate a Self-Signed certificate.
@@ -101,18 +100,18 @@ Check OpenSSL version. If version is `OpenSSL ≥ 1.1.1` use:
 
 ```bash
 openssl req -x509 -newkey rsa:4096 -sha256 -days 1095 -nodes \
-  -keyout ./base/tls.key -out ./base/tls.crt -subj '/CN=awx-io.mvne.postemobile.local' \
-  -addext 'subjectAltName=DNS:awx-io.mvne.postemobile.local'
+  -keyout ./base/tls.key -out ./base/tls.crt -subj '/CN=awx-io.local' \
+  -addext 'subjectAltName=DNS:awx-io.local'
 ```
 
 If version is `OpenSSL ≤ 1.1.0` use:
 
 ```bash
 openssl req -x509 -newkey rsa:4096 -sha256 -days 1095 -nodes \
-  -keyout ./base/tls.key -out ./base/tls.crt -subj '/CN=awx-io.mvne.postemobile.local' \    👈edit CN
+  -keyout ./base/tls.key -out ./base/tls.crt -subj '/CN=awx-iolocal' \    👈edit CN
   -extensions san \
   -config <(echo '[req]'; echo 'distinguished_name=req';
-            echo '[san]'; echo 'subjectAltName=DNS:awx-io.mvne.postemobile.local')    👈edit CN
+            echo '[san]'; echo 'subjectAltName=DNS:awx-io.local')    👈edit CN
 ```
 
 Verify certificate contents.
