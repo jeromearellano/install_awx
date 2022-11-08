@@ -100,8 +100,8 @@ Check OpenSSL version. If version is `OpenSSL ≥ 1.1.1` use:
 
 ```bash
 openssl req -x509 -newkey rsa:4096 -sha256 -days 1095 -nodes \
-  -keyout ./base/tls.key -out ./base/tls.crt -subj '/CN=awx-io.local' \
-  -addext 'subjectAltName=DNS:awx-io.local'
+  -keyout ./base/tls.key -out ./base/tls.crt -subj '/CN=ubuntu.awx.local' \
+  -addext 'subjectAltName=DNS:ubuntu.awx.local'
 ```
 
 If version is `OpenSSL ≤ 1.1.0` use:
@@ -128,7 +128,7 @@ spec:
   ...
   ingress_type: ingress
   ingress_tls_secret: awx-secret-tls
-  hostname: awx-io.mvne.postemobile.local     👈edit hostname
+  hostname: ubuntu.awx.local     👈edit hostname
   ...
 ```
 
